@@ -1,11 +1,14 @@
-void task(const int *A, int length, int *B) {
-    int count = 1;
-    if (length == 0) {
-        return;
+#include <stdio.h>
+
+int task_cmd(int length) {
+    int sum = 0;
+    char ch = ' ';
+    printf("Your string:");
+    for (int i = 0; i < length; ++i) {
+        scanf("%c", &ch);
+        if ((ch >= '1') && (ch <= '9')) {
+            sum += ((int) ch - 48);
+        }
     }
-    B[0] = A[0];
-    while (count < length){
-        B[count] = A[count] + B[count - 1];
-        ++count;
-    }
+    return sum;
 }
