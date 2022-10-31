@@ -15,6 +15,7 @@ task_cmd:
 	mov	rbp, rsp
 	sub	rsp, 32
 	mov	DWORD PTR -20[rbp], edi			# -20 = length
+	add DWORD PTR -20[rbp], 1
 	mov	DWORD PTR -4[rbp], 0			# -4 = sum
 	mov	BYTE PTR -9[rbp], 32			# -9 = ch
 	lea	rdi, .LC0[rip]

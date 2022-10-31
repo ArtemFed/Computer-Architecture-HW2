@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int task_cmd(int length) {
+    length += 1;
     int sum = 0;
     char ch = ' ';
     printf("Your string:");
