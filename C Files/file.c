@@ -1,10 +1,10 @@
 #include <stdio.h>
 
-void task_file(char *input, char *output, int length) {
+void task_file(char *input, char *output) {
     FILE *input_stream = fopen(input, "r");
     int sum = 0;
     char ch = ' ';
-    for (int i = 0; i < length; ++i) {
+    while (!feof(input_stream)) {
         fscanf(input_stream, "%c", &ch);
         if ((ch >= '1') && (ch <= '9')) {
             sum += ((int) ch - 48);
