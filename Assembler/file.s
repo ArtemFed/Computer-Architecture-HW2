@@ -18,15 +18,15 @@ task_file:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 48
-	mov	QWORD PTR -40[rbp], rdi								# -40 = char *input
-	mov	QWORD PTR -48[rbp], rsi								# -48 = char *output
+	mov	QWORD PTR -40[rbp], rdi			# -40 = char *input
+	mov	QWORD PTR -48[rbp], rsi			# -48 = char *output
 	mov	rax, QWORD PTR -40[rbp]
 	lea	rsi, .LC0[rip]
 	mov	rdi, rax
-	call	fopen@PLT														# fopen(input, "r");
-	mov	QWORD PTR -16[rbp], rax								# -16 = FILE *input_stream
-	mov	DWORD PTR -4[rbp], 0									# -4 = sum
-	mov	BYTE PTR -25[rbp], 32									# -25 = ch = ' '
+	call	fopen@PLT				# fopen(input, "r");
+	mov	QWORD PTR -16[rbp], rax			# -16 = FILE *input_stream
+	mov	DWORD PTR -4[rbp], 0			# -4 = sum
+	mov	BYTE PTR -25[rbp], 32			# -25 = ch = ' '
 	jmp	.L2
 .L3:
 	lea	rdx, -25[rbp]
@@ -57,8 +57,8 @@ task_file:
 	mov	rax, QWORD PTR -48[rbp]
 	lea	rsi, .LC2[rip]
 	mov	rdi, rax
-	call	fopen@PLT														# fopen(output, "w");
-	mov	QWORD PTR -24[rbp], rax								# -24 = FILE *output_stream
+	call	fopen@PLT				# fopen(output, "w");
+	mov	QWORD PTR -24[rbp], rax			# -24 = FILE *output_stream
 	mov	edx, DWORD PTR -4[rbp]
 	mov	rax, QWORD PTR -24[rbp]
 	lea	rsi, .LC3[rip]
