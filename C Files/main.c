@@ -65,7 +65,7 @@ int main(int argc, char *argv[]) {
 
     // File
     if (argc == 3) {
-        task_file(argv[2], argv[3]);
+        task_file(argv[1], argv[2]);
         return 0;
     }
 

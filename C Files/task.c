@@ -12,12 +12,3 @@ int task_cmd(int length) {
     }
     return sum;
 }
-
-// file:
-// ./exe input output
-
-// random timer:
-// ./exe length
-
-// random & simple:
-// ./exe
