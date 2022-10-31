@@ -14,13 +14,13 @@ task_cmd:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 32
-	mov	DWORD PTR -20[rbp], edi					# -20 = length
-	mov	DWORD PTR -4[rbp], 0						# -4 = sum
-	mov	BYTE PTR -9[rbp], 32						# -9 = ch
+	mov	DWORD PTR -20[rbp], edi			# -20 = length
+	mov	DWORD PTR -4[rbp], 0			# -4 = sum
+	mov	BYTE PTR -9[rbp], 32			# -9 = ch
 	lea	rdi, .LC0[rip]
 	mov	eax, 0
 	call	printf@PLT
-	mov	DWORD PTR -8[rbp], 0						# -8 = i в for
+	mov	DWORD PTR -8[rbp], 0			# -8 = i в for
 	jmp	.L2
 .L4:
 	lea	rax, -9[rbp]
