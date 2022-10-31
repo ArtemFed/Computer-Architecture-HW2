@@ -4,86 +4,125 @@
 # main_mod.s
 
 ###    Бесполезные переприсваивания:
+*     - mov	eax, DWORD PTR -4[rbp]
+	- mov	esi, eax
+      + mov	esi, DWORD PTR -4[rbp]
+*     - mov	eax, DWORD PTR -4[rbp]
+	- mov	esi, eax
+      + mov	esi, DWORD PTR -4[rbp]
+*     - mov	eax, DWORD PTR -8[rbp]
+	- mov	edi, eax
+      + mov	edi, DWORD PTR -8[rbp]
+*     - mov	eax, DWORD PTR -8[rbp]
+	- mov	edi, eax
+      + mov	edi, DWORD PTR -8[rbp]
+
+
+###    Регистры:
+*     - mov	DWORD PTR -8[rbp], 0
+      - add	DWORD PTR -8[rbp], 1
+      - mov	eax, DWORD PTR -8[rbp]
+      + mov	r12d, 0
+      + add	r12d, 1
+      + mov	eax, r12d
+*     - mov	DWORD PTR -8[rbp], 0
+      - add	DWORD PTR -8[rbp], 1
+      - mov	eax, DWORD PTR -8[rbp]
+      + mov	r12d, 0
+      + add	r12d, 1
+      + mov	eax, r12d
+*     - mov	DWORD PTR -4[rbp], 0
+      - add	DWORD PTR -4[rbp], 1
+      - cmp	DWORD PTR -4[rbp], 4999999
+      + mov	r12d, 0	
+      + add	r12d, 1
+      + cmp	r12d, 4999999
+
+###    Просто удалено
+      > 	.section	.note.gnu.property,"a"
+      > 	.align 8
+      > 	.long	 1f - 0f
+      > 	.long	 4f - 1f
+      > 	.long	 5
+      > 0:
+      > 	.string	 "GNU"
+      > 1:
+      > 	.align 8
+      > 	.long	 0xc0000002
+      > 	.long	 3f - 2f
+      > 2:
+      > 	.long	 0x3
+      > 3:
+      > 	.align 8
+      > 4:
+      > 
+
+# file_mod.s
+
+###    Бесполезные переприсваивания:
+*     - mov rax, QWORD PTR -16[rbp]
+	- mov rdi, rax
+	+ mov rdi, QWORD PTR -16[rbp]
+*     - mov rax, QWORD PTR -16[rbp]
+	- mov rdi, rax
+      + mov rdi, QWORD PTR -16[rbp]
+*     - mov	rax, QWORD PTR -24[rbp]
+	- mov	rdi, rax
+      + mov rdi, QWORD PTR -24[rbp]
+
+###    Регистры:
+*     - 
+
+###    Просто удалено
+      > 	.section	.note.gnu.property,"a"
+      > 	.align 8
+      > 	.long	 1f - 0f
+      > 	.long	 4f - 1f
+      > 	.long	 5
+      > 0:
+      > 	.string	 "GNU"
+      > 1:
+      > 	.align 8
+      > 	.long	 0xc0000002
+      > 	.long	 3f - 2f
+      > 2:
+      > 	.long	 0x3
+      > 3:
+      > 	.align 8
+      > 4:
+      > 
+
+
+# task_mod.s
+###    Бесполезные переприсваивания:
 *     - mov rax, rsp
       - mov rbx, rax 
       + mov rbx, rsp
-*     - mov rax, QWORD PTR -128[rbp] 
-      - mov rdi, rax 
-      + mov rdi, QWORD PTR -128[rbp]
-*     - mov ecx, DWORD PTR -184[rbp]
-      - mov esi, ecx
-      + mov esi, DWORD PTR -184[rbp] 
-*     - mov rax, QWORD PTR -112[rbp]
-      - mov rdi, rax 
-      + mov rdi, QWORD PTR -112[rbp]
-*     - mov rax, QWORD PTR -88[rbp]
-      - mov rdi, rax
-      + mov rdi, QWORD PTR -88[rbp]
-*     - mov eax, DWORD PTR -184[rbp]
-      - mov esi, eax 
-      + mov esi, DWORD PTR -184[rbp]
-*     - mov ecx, DWORD PTR -184[rbp]
-      - mov esi, ecx 
-      + mov esi, DWORD PTR -184[rbp]
-*     - mov rax, QWORD PTR -152[rbp]
-      - mov rdi, rax 
-      + mov rdi, QWORD PTR -152[rbp]
-*     - mov edx, DWORD PTR -184[rbp]
-      - mov esi, edx 
-      + mov esi, DWORD PTR -184[rbp]
-*     - mov rax, QWORD PTR -136[rbp]
-      - mov rdi, rax 
-      + mov rdi, QWORD PTR -136[rbp]
-*     - mov eax, DWORD PTR -176[rbp]
-      - mov esi, eax
-      + mov esi, DWORD PTR -176[rbp]
-*     - mov ecx, DWORD PTR -184[rbp]
-      - mov esi, ecx
-      + mov esi, DWORD PTR -184[rbp]
-*     - mov rax, QWORD PTR -152[rbp]
-      - mov rdi, rax 
-      + mov rdi, QWORD PTR -152[rbp]
-*     - mov edx, DWORD PTR -184[rbp]
-      - mov esi, edx 
-      + mov esi, DWORD PTR -184[rbp]
-*     - mov rax, QWORD PTR -136[rbp]
-      - mov rdi, rax 
-      + mov rdi, QWORD PTR -136[rbp]
-*     Удалены cdqe
-*     Удалена канарейка: 
-      В начале:
-      - mov rax, QWORD PTR fs:40
-      - mov QWORD PTR -56[rbp], rax
-      В конце:
-      - mov rbx, QWORD PTR -56[rbp]
-      - xor rbx, QWORD PTR fs:40
-      - je .L29
-*     Из-за удаления канарейки метка .L28 становится пуста,
-      поэтому её удаление с изменение вызовов .L28 на .L29 не изменит программу
 
-###     С массивами:
-*     В каждом объявлении массива аккуратно удалены лишние переменные
-*     Например одно из таких бесполезных созданий (массив А[]):
-      - sub rdx, 1
-      - mov QWORD PTR -128[rbp], rdx
-      - movsx rdx, eax
-      - mov QWORD PTR -240[rbp], rdx
-      - mov QWORD PTR -232[rbp], 0
-      - movsx rdx, eax
-      - mov QWORD PTR -256[rbp], rdx
-      - mov QWORD PTR -248[rbp], 0
-*     Удалены лишние команды перед созданием массива:
-      - movsx rdx, eax
-      - sub rdx, 1
+###    Регистры:
+*     - mov	DWORD PTR -8[rbp], 0
+      - add	DWORD PTR -8[rbp], 1
+      - mov	eax, DWORD PTR -8[rbp]
+      + mov	r12d, 0
+      + add	r12d, 1
+      + mov	eax, r12d
+*     - 
 
-# print_mod.s
-*     Удалён cdqe
-*     Много присваиваний в eax
-      - mov eax, DWORD PTR -4[rbp] <br>
-      - mov eax, DWORD PTR [rax] <br>
-      - mov esi, eax <br>
-      - mov eax, 0
-      + mov esi, DWORD PTR [rax]
-
-# task_mod.s
-*     Удалены cdqe 
+###    Просто удалено
+      > 	.section	.note.gnu.property,"a"
+      > 	.align 8
+      > 	.long	 1f - 0f
+      > 	.long	 4f - 1f
+      > 	.long	 5
+      > 0:
+      > 	.string	 "GNU"
+      > 1:
+      > 	.align 8
+      > 	.long	 0xc0000002
+      > 	.long	 3f - 2f
+      > 2:
+      > 	.long	 0x3
+      > 3:
+      > 	.align 8
+      > 4:
+      > 
