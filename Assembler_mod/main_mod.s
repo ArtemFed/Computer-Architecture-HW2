@@ -187,15 +187,15 @@ main:
 	call	clock@PLT
 	mov	QWORD PTR -16[rbp], rax			# time_t t_start => (-16 = t_end)
 	# mov	DWORD PTR -4[rbp], 0			# -4 = i в for
-	mov	r12d, 0			# -4 = i в for
+	mov	r13d, 0			# -4 = i в for
 	jmp	.L17
 .L18:							# for (int i = 0; i < 5000000; ++i) {
 	mov	edi, DWORD PTR -8[rbp]
 	call	task_random_lite
 	# add	DWORD PTR -4[rbp], 1
-	add	r12d, 1
+	add	r13d, 1
 .L17:
-	cmp	r12d, 4999999
+	cmp	r13d, 4999999
 	jle	.L18
 	mov	edi, DWORD PTR -8[rbp]
 	call	task_random
@@ -218,26 +218,27 @@ main:
 	mov	eax, 0
 	jmp	.L20
 .L16:
-	mov	eax, 0
-	call	read_int
-	mov	DWORD PTR -8[rbp], eax
 	lea	rdi, .LC6[rip]
 	mov	eax, 0
-	call	printf@PLT				# printf("Random input or Direct (ans: 1, !=1):");
+	call	printf@PLT
 	lea	rax, -28[rbp]
 	mov	rsi, rax
 	lea	rdi, .LC1[rip]
 	mov	eax, 0
-	call	__isoc99_scanf@PLT			# scanf("%d", &answer);
+	call	__isoc99_scanf@PLT
 	mov	eax, DWORD PTR -28[rbp]
 	cmp	eax, 1
 	jne	.L19
-	mov	edi, DWORD PTR -8[rbp]
+	mov	eax, 0
+	call	read_int
+	mov	DWORD PTR -8[rbp], eax
+	mov	eax, DWORD PTR -8[rbp]
+	mov	edi, eax
 	call	task_random
 	mov	eax, 0
 	jmp	.L20
 .L19:
-	mov	edi, DWORD PTR -8[rbp]
+	mov	eax, 0
 	call	task_cmd@PLT
 	mov	esi, eax
 	lea	rdi, .LC7[rip]

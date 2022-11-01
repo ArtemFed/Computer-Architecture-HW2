@@ -121,5 +121,3 @@ task_file:
 3:
 	.align 8
 4:
-4.0"
-	.section	.note.GNU-stack,"",@progbits

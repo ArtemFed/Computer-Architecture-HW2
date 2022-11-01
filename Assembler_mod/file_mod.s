@@ -13,7 +13,7 @@ check_stream:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 16
-	mov	QWORD PTR -8[rbp], rdi
+	mov	QWORD PTR -8[rbp], rdi		# -8 = FILE *stream
 	cmp	QWORD PTR -8[rbp], 0
 	jne	.L3
 	lea	rdi, .LC0[rip]
@@ -50,16 +50,15 @@ task_file:
 	mov	rdi, rax
 	call	fopen@PLT				# fopen(input, "r");
 	mov	QWORD PTR -16[rbp], rax			# -16 = FILE *input_stream
-	mov	rdi, QWORD PTR -16[rbp]
+	mov	rdi, rax
 	call	check_stream
 	mov	DWORD PTR -4[rbp], 0			# -4 = sum
 	mov	BYTE PTR -25[rbp], 32			# -25 = ch = ' '
 	jmp	.L5
 .L6:
 	lea	rdx, -25[rbp]
-	mov	rax, QWORD PTR -16[rbp]
 	lea	rsi, .LC2[rip]
-	mov	rdi, rax
+	mov	rdi, QWORD PTR -16[rbp]
 	mov	eax, 0
 	call	__isoc99_fscanf@PLT
 	movzx	eax, BYTE PTR -25[rbp]
@@ -79,12 +78,10 @@ task_file:
 	je	.L6
 	mov	rdi, QWORD PTR -16[rbp]
 	call	fclose@PLT
-	mov	rax, QWORD PTR -48[rbp]
 	lea	rsi, .LC3[rip]
-	mov	rdi, rax
+	mov	rdi, QWORD PTR -48[rbp]
 	call	fopen@PLT				# fopen(output, "w");
 	mov	QWORD PTR -24[rbp], rax			# -24 = FILE *output_stream
-	mov	rax, QWORD PTR -16[rbp]
 	mov	rdi, rax
 	call	check_stream
 	mov	edx, DWORD PTR -4[rbp]
@@ -93,8 +90,7 @@ task_file:
 	mov	rdi, rax
 	mov	eax, 0
 	call	fprintf@PLT
-	mov	rax, QWORD PTR -24[rbp]
-	mov	rdi, rax
+	mov	rdi, QWORD PTR -24[rbp]
 	call	fclose@PLT
 	nop
 	leave

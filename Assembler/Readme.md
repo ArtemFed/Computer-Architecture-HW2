@@ -30,6 +30,7 @@
 
 ## __file__:
 <br> -4 = sum
+<br> -8 = FILE *stream
 <br> -16 = FILE *input_stream
 <br> -24 = FILE *output_stream
 <br> -25 = ch
@@ -40,5 +41,4 @@
 ## __task__:
 <br> -4 = sum
 <br> -8 = i в for
-<br> -9 = ch 
-<br> -20 = length
+<br> -112 = string[100]

@@ -184,7 +184,7 @@ main:
 	mov	DWORD PTR -8[rbp], eax			# length = atoi(argv[1]);
 	call	clock@PLT
 	mov	QWORD PTR -16[rbp], rax			# time_t t_start => (-16 = t_end)
-	mov	DWORD PTR -4[rbp], 0
+	mov	DWORD PTR -4[rbp], 0				# -4 = i в for
 	jmp	.L17
 .L18:							# for (int i = 0; i < 5000000; ++i) {
 	mov	eax, DWORD PTR -8[rbp]
@@ -219,9 +219,6 @@ main:
 	mov	eax, 0
 	jmp	.L20
 .L16:
-	mov	eax, 0
-	call	read_int
-	mov	DWORD PTR -8[rbp], eax
 	lea	rdi, .LC6[rip]
 	mov	eax, 0
 	call	printf@PLT
@@ -233,14 +230,16 @@ main:
 	mov	eax, DWORD PTR -28[rbp]
 	cmp	eax, 1
 	jne	.L19
+	mov	eax, 0
+	call	read_int
+	mov	DWORD PTR -8[rbp], eax
 	mov	eax, DWORD PTR -8[rbp]
 	mov	edi, eax
 	call	task_random
 	mov	eax, 0
 	jmp	.L20
 .L19:
-	mov	eax, DWORD PTR -8[rbp]
-	mov	edi, eax
+	mov	eax, 0
 	call	task_cmd@PLT
 	mov	esi, eax
 	lea	rdi, .LC7[rip]
