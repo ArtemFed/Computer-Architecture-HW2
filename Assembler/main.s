@@ -157,7 +157,7 @@ main:
 	mov	QWORD PTR -48[rbp], rsi			# запись argv => (-48 = argv)
 	mov	DWORD PTR -8[rbp], 0			# length = 0 => (-8 = length)
 	mov	DWORD PTR -28[rbp], 0			# answer = 0 => (-28 = answer)
-	cmp	DWORD PTR -36[rbp], 3			# if (argc == 3) {
+	cmp	DWORD PTR -36[rbp], 3			# if (argc == 3)
 	jne	.L14
 	mov	rax, QWORD PTR -48[rbp]
 	add	rax, 16
@@ -203,7 +203,7 @@ main:
 	mov	rax, QWORD PTR -24[rbp]
 	mov	rsi, rdx
 	mov	rdi, rax
-	call	difftime@PLT				# (int) difftime(t_end, t_start)) / 1000;
+	call	difftime@PLT				# (int) (difftime(t_end, t_start)) / 1000);
 	cvttsd2si	eax, xmm0
 	movsx	rdx, eax
 	imul	rdx, rdx, 274877907
@@ -224,12 +224,12 @@ main:
 	mov	DWORD PTR -8[rbp], eax
 	lea	rdi, .LC6[rip]
 	mov	eax, 0
-	call	printf@PLT				# printf("Random input or Direct (ans: 1, !=1):");
+	call	printf@PLT
 	lea	rax, -28[rbp]
 	mov	rsi, rax
 	lea	rdi, .LC1[rip]
 	mov	eax, 0
-	call	__isoc99_scanf@PLT			# scanf("%d", &answer);
+	call	__isoc99_scanf@PLT
 	mov	eax, DWORD PTR -28[rbp]
 	cmp	eax, 1
 	jne	.L19

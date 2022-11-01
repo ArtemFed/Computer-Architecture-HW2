@@ -1,14 +1,14 @@
 #include <stdio.h>
 
-int task_cmd(int length) {
-	++length;
+int task_cmd() {
     int sum = 0;
-    char ch = ' ';
+    char string[100];
     printf("Your string:");
-    for (int i = 0; i < length; ++i) {
-        scanf("%c", &ch);
-        if ((ch >= '1') && (ch <= '9')) {
-            sum += ((int) ch - 48);
+    scanf("%s", string);
+
+    for (int i = 0; string[i] != '\0'; ++i) {
+        if ((string[i] >= '1') && (string[i] <= '9')) {
+            sum += (int) string[i] - 48;
         }
     }
     return sum;

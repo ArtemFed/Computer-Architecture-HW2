@@ -14,7 +14,7 @@
 
 #define max_size 100
 
-extern int task_cmd(int length);
+extern int task_cmd();
 extern void task_file(char *input, char *output);
 
 int read_int() {
@@ -83,17 +83,17 @@ int main(int argc, char *argv[]) {
         printf("\n%d ms\n", (int) (difftime(t_end, t_start)) / 1000);
         return 0;
     }
-    length = read_int();
 
     printf("Random input or Direct (ans: 1, !=1):");
     scanf("%d", &answer);
 	
     // Random
     if (answer == 1) {
+        length = read_int();
         task_random(length);
         return 0;
     }
 
-    printf("\nResult: %d\n", task_cmd(length));
+    printf("\nResult: %d\n", task_cmd());
     return 0;
 }

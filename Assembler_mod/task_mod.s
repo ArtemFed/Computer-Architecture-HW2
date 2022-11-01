@@ -21,7 +21,8 @@ task_cmd:
 	lea	rdi, .LC0[rip]
 	mov	eax, 0
 	call	printf@PLT
-	mov r12d, 0			# r12d = i в for
+	# mov	DWORD PTR -8[rbp], 0			# -8 = i в for
+	mov	r12d, 0
 	jmp	.L2
 .L4:
 	lea	rax, -9[rbp]
@@ -40,6 +41,7 @@ task_cmd:
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L3:
+	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L2:
 	mov	eax, r12d
@@ -50,4 +52,4 @@ task_cmd:
 	ret
 	.size	task_cmd, .-task_cmd
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
- 	.section	.note.GNU-stack,"",@progbits
+	.section	.note.GNU-stack,"",@progbits

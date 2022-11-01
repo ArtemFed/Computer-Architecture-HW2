@@ -62,9 +62,7 @@ task_random:						# void task_random(int length)
 	lea	rdi, .LC3[rip]
 	mov	eax, 0
 	call	printf@PLT
-	call	clock@PLT
-	mov	edi, eax
-	call	srand@PLT
+	# mov	DWORD PTR -8[rbp], 0			# -8 = i в for
 	mov	r12d, 0			# r12d = i в for
 	jmp	.L6
 .L8:							# for (int i = 0; i < length; ++i)
@@ -87,8 +85,10 @@ task_random:						# void task_random(int length)
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L7:
+	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L6:
+	# mov	eax, DWORD PTR -8[rbp]
 	mov	eax, r12d
 	cmp	eax, DWORD PTR -20[rbp]
 	jl	.L8
@@ -109,9 +109,7 @@ task_random_lite:					# int task_random_lite(int length)
 	sub	rsp, 32
 	mov	DWORD PTR -20[rbp], edi			# -20 = length
 	mov	DWORD PTR -4[rbp], 0			# -4 = sum
-	call	clock@PLT
-	mov	edi, eax
-	call	srand@PLT
+	# mov	DWORD PTR -8[rbp], 0			# -8 = j в for
 	mov	r12d, 0			# r12d = j в for
 	jmp	.L10
 .L12:
@@ -131,12 +129,13 @@ task_random_lite:					# int task_random_lite(int length)
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L11:
+	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L10:
+	# mov	eax, DWORD PTR -8[rbp]
 	mov	eax, r12d
 	cmp	eax, DWORD PTR -20[rbp]
 	jl	.L12
-	nop
 	nop
 	leave
 	ret
@@ -161,13 +160,13 @@ main:
 	mov	QWORD PTR -48[rbp], rsi			# запись argv => (-48 = argv)
 	mov	DWORD PTR -8[rbp], 0			# length = 0 => (-8 = length)
 	mov	DWORD PTR -28[rbp], 0			# answer = 0 => (-28 = answer)
-	cmp	DWORD PTR -36[rbp], 3			# if (argc == 3) {
+	cmp	DWORD PTR -36[rbp], 3			# if (argc == 3)
 	jne	.L14
 	mov	rax, QWORD PTR -48[rbp]
-	add	rax, 24
+	add	rax, 16
 	mov	rdx, QWORD PTR [rax]
 	mov	rax, QWORD PTR -48[rbp]
-	add	rax, 16
+	add	rax, 8
 	mov	rax, QWORD PTR [rax]
 	mov	rsi, rdx				# => argv[1]
 	mov	rdi, rax				# => argv[2]
@@ -175,6 +174,9 @@ main:
 	mov	eax, 0
 	jmp	.L20					# return 0;
 .L14:
+	call	clock@PLT
+	mov	edi, eax
+	call	srand@PLT
 	cmp	DWORD PTR -36[rbp], 2
 	jne	.L16					# if (argc == 2) {
 	mov	rax, QWORD PTR -48[rbp]
@@ -184,14 +186,13 @@ main:
 	mov	DWORD PTR -8[rbp], eax			# length = atoi(argv[1]);
 	call	clock@PLT
 	mov	QWORD PTR -16[rbp], rax			# time_t t_start => (-16 = t_end)
-	call	clock@PLT
-	mov	edi, eax
-	call	srand@PLT
-	mov	r12d, 0				# r12d = i в for
+	# mov	DWORD PTR -4[rbp], 0			# -4 = i в for
+	mov	r12d, 0			# -4 = i в for
 	jmp	.L17
 .L18:							# for (int i = 0; i < 5000000; ++i) {
 	mov	edi, DWORD PTR -8[rbp]
 	call	task_random_lite
+	# add	DWORD PTR -4[rbp], 1
 	add	r12d, 1
 .L17:
 	cmp	r12d, 4999999
@@ -200,13 +201,17 @@ main:
 	call	task_random
 	call	clock@PLT
 	mov	QWORD PTR -24[rbp], rax			# time_t t_end => (-24 = t_end)
-	# mov	rdx, QWORD PTR -16[rbp]
-	# mov	rsi, rdx
 	mov	rsi, QWORD PTR -16[rbp]
-	mov	rdi, rax
+	mov	rdi, QWORD PTR -24[rbp]
 	call	difftime@PLT				# (int) difftime(t_end, t_start)) / 1000;
 	cvttsd2si	eax, xmm0
-	mov	esi, eax
+	movsx	rdx, eax
+	imul	rdx, rdx, 274877907
+	shr	rdx, 32
+	sar	edx, 6
+	sar	eax, 31
+	sub	edx, eax
+	mov	esi, edx
 	lea	rdi, .LC5[rip]
 	mov	eax, 0
 	call	printf@PLT
@@ -245,3 +250,4 @@ main:
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
 	.section	.note.GNU-stack,"",@progbits
+	

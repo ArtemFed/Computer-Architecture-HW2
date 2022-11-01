@@ -13,7 +13,7 @@ check_stream:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 16
-	mov	QWORD PTR -8[rbp], rdi
+	mov	QWORD PTR -8[rbp], rdi		# -8 = FILE *stream
 	cmp	QWORD PTR -8[rbp], 0
 	jne	.L3
 	lea	rdi, .LC0[rip]
@@ -121,3 +121,5 @@ task_file:
 3:
 	.align 8
 4:
+4.0"
+	.section	.note.GNU-stack,"",@progbits
