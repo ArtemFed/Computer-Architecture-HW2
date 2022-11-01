@@ -18,9 +18,7 @@ task_file:
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 48
-	# mov	QWORD PTR -40[rbp], rdi			# -40 = char *input
 	mov	QWORD PTR -48[rbp], rsi			# -48 = char *output
-	# mov	rax, QWORD PTR -40[rbp]
 	mov	rax, rdi
 	lea	rsi, .LC0[rip]
 	mov	rdi, rax
@@ -47,14 +45,10 @@ task_file:
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L2:
-	# mov	rax, QWORD PTR -16[rbp]
-	# mov	rdi, rax
 	mov	rdi, QWORD PTR -16[rbp]
 	call	feof@PLT
 	test	eax, eax
 	je	.L3
-	# mov	rax, QWORD PTR -16[rbp]
-	# mov	rdi, rax
 	mov rdi, QWORD PTR -16[rbp]
 	call	fclose@PLT
 	mov	rax, QWORD PTR -48[rbp]
@@ -63,13 +57,10 @@ task_file:
 	call	fopen@PLT				# fopen(output, "w");
 	mov	QWORD PTR -24[rbp], rax			# -24 = FILE *output_stream
 	mov	edx, DWORD PTR -4[rbp]
-	# mov	rax, QWORD PTR -24[rbp]	- ЭТО ЖЕ ПРОСТО НЕ НУЖНО, ДА? - спросил я у себя будущего из прошлого
 	lea	rsi, .LC3[rip]
 	mov	rdi, rax
 	mov	eax, 0
 	call	fprintf@PLT
-	# mov	rax, QWORD PTR -24[rbp]
-	# mov	rdi, rax
 	mov rdi, QWORD PTR -24[rbp]
 	call	fclose@PLT
 	nop
@@ -77,20 +68,3 @@ task_file:
 	ret
 	.size	task_file, .-task_file
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
-# 	.section	.note.GNU-stack,"",@progbits
-# 	.section	.note.gnu.property,"a"
-# 	.align 8
-# 	.long	 1f - 0f
-# 	.long	 4f - 1f
-# 	.long	 5
-# 0:
-# 	.string	 "GNU"
-# 1:
-# 	.align 8
-# 	.long	 0xc0000002
-# 	.long	 3f - 2f
-# 2:
-# 	.long	 0x3
-# 3:
-# 	.align 8
-# 4:

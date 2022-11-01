@@ -33,8 +33,6 @@ read_int:						# int read_int()
 	cmp	eax, 100
 	jle	.L3					# if (... || length > max_size)
 .L2:
-	# mov	eax, DWORD PTR -4[rbp]
-	# mov	esi, eax
 	mov	esi, DWORD PTR -4[rbp]
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
@@ -67,7 +65,6 @@ task_random:						# void task_random(int length)
 	call	clock@PLT
 	mov	edi, eax
 	call	srand@PLT
-	# mov	DWORD PTR -8[rbp], 0			# -8 = i в for
 	mov	r12d, 0			# r12d = i в for
 	jmp	.L6
 .L8:							# for (int i = 0; i < length; ++i)
@@ -90,15 +87,11 @@ task_random:						# void task_random(int length)
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L7:
-	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L6:
-	# mov	eax, DWORD PTR -8[rbp]
 	mov	eax, r12d
 	cmp	eax, DWORD PTR -20[rbp]
 	jl	.L8
-	# mov	eax, DWORD PTR -4[rbp]
-	# mov	esi, eax
 	mov	esi, DWORD PTR -4[rbp]
 	lea	rdi, .LC4[rip]
 	mov	eax, 0
@@ -119,7 +112,6 @@ task_random_lite:					# int task_random_lite(int length)
 	call	clock@PLT
 	mov	edi, eax
 	call	srand@PLT
-	# mov	DWORD PTR -8[rbp], 0			# -8 = j в for
 	mov	r12d, 0			# r12d = j в for
 	jmp	.L10
 .L12:
@@ -139,10 +131,8 @@ task_random_lite:					# int task_random_lite(int length)
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L11:
-	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L10:
-	# mov	eax, DWORD PTR -8[rbp]
 	mov	eax, r12d
 	cmp	eax, DWORD PTR -20[rbp]
 	jl	.L12
@@ -189,8 +179,7 @@ main:
 	jne	.L16					# if (argc == 2) {
 	mov	rax, QWORD PTR -48[rbp]
 	add	rax, 8
-	mov	rax, QWORD PTR [rax]
-	mov	rdi, rax
+	mov	rdi, QWORD PTR [rax]
 	call	atoi@PLT
 	mov	DWORD PTR -8[rbp], eax			# length = atoi(argv[1]);
 	call	clock@PLT
@@ -198,28 +187,22 @@ main:
 	call	clock@PLT
 	mov	edi, eax
 	call	srand@PLT
-	# mov	DWORD PTR -4[rbp], 0				# -4 = i в for
 	mov	r12d, 0				# r12d = i в for
 	jmp	.L17
 .L18:							# for (int i = 0; i < 5000000; ++i) {
-	mov	eax, DWORD PTR -8[rbp]
-	mov	edi, eax
+	mov	edi, DWORD PTR -8[rbp]
 	call	task_random_lite
-	# add	DWORD PTR -4[rbp], 1
 	add	r12d, 1
 .L17:
-	# cmp	DWORD PTR -4[rbp], 4999999
 	cmp	r12d, 4999999
 	jle	.L18
-	# mov	eax, DWORD PTR -8[rbp]
-	# mov	edi, eax
 	mov	edi, DWORD PTR -8[rbp]
 	call	task_random
 	call	clock@PLT
 	mov	QWORD PTR -24[rbp], rax			# time_t t_end => (-24 = t_end)
-	mov	rdx, QWORD PTR -16[rbp]
-	# mov	rax, QWORD PTR -24[rbp] - ЭТО ЖЕ ПРОСТО НЕ НУЖНО, ДА? - спросил я у себя будущего из прошлого
-	mov	rsi, rdx
+	# mov	rdx, QWORD PTR -16[rbp]
+	# mov	rsi, rdx
+	mov	rsi, QWORD PTR -16[rbp]
 	mov	rdi, rax
 	call	difftime@PLT				# (int) difftime(t_end, t_start)) / 1000;
 	cvttsd2si	eax, xmm0
@@ -244,15 +227,11 @@ main:
 	mov	eax, DWORD PTR -28[rbp]
 	cmp	eax, 1
 	jne	.L19
-	# mov	eax, DWORD PTR -8[rbp]
-	# mov	edi, eax
 	mov	edi, DWORD PTR -8[rbp]
 	call	task_random
 	mov	eax, 0
 	jmp	.L20
 .L19:
-	# mov	eax, DWORD PTR -8[rbp]
-	# mov	edi, eax
 	mov	edi, DWORD PTR -8[rbp]
 	call	task_cmd@PLT
 	mov	esi, eax
@@ -266,19 +245,3 @@ main:
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
 	.section	.note.GNU-stack,"",@progbits
-# 	.section	.note.gnu.property,"a"
-# 	.align 8
-# 	.long	 1f - 0f
-# 	.long	 4f - 1f
-# 	.long	 5
-# 0:
-# 	.string	 "GNU"
-# 1:
-# 	.align 8
-# 	.long	 0xc0000002
-# 	.long	 3f - 2f
-# 2:
-# 	.long	 0x3
-# 3:
-# 	.align 8
-# 4:

@@ -33,7 +33,6 @@ void task_random(int length) {
     char ch;
 
     printf("Result string: ");
-    srand(clock());
     for (int i = 0; i < length; ++i) {
         // (char) 33 = '!' && (char) 64 = @
         ch = rand() % 32 + 33;
@@ -50,7 +49,6 @@ void task_random_lite(int length) {
     int sum = 0;
     char ch;
 
-    srand(clock());
     for (int j = 0; j < length; ++j) {
         // (char) 33 = '!' && (char) 64 = @
         ch = rand() % 32 + 33;
@@ -69,26 +67,27 @@ int main(int argc, char *argv[]) {
         return 0;
     }
 
+
+    srand(clock());
     // Random + Timer
     if (argc == 2) {
         length = atoi(argv[1]);
 
         time_t t_start = clock();
-        srand(clock());
         for (int i = 0; i < 5000000; ++i) {
             task_random_lite(length);
         }
         task_random(length);
         time_t t_end = clock();
 
-        printf("\n%d ms\n", (int) difftime(t_end, t_start)) / 1000;
+        printf("\n%d ms\n", (int) (difftime(t_end, t_start)) / 1000);
         return 0;
     }
     length = read_int();
 
     printf("Random input or Direct (ans: 1, !=1):");
     scanf("%d", &answer);
-
+	
     // Random
     if (answer == 1) {
         task_random(length);
