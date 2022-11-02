@@ -23,8 +23,7 @@ task_cmd:
 	lea	rdi, .LC1[rip]
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
-	# mov	DWORD PTR -8[rbp], 0		# i в for
-	mov	r12d, 0		# i в for
+	mov	r12d, 0		# r12d в for
 	jmp	.L2
 .L4:
 	mov	eax, r12d

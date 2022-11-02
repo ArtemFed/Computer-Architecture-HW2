@@ -62,7 +62,6 @@ task_random:						# void task_random(int length)
 	lea	rdi, .LC3[rip]
 	mov	eax, 0
 	call	printf@PLT
-	# mov	DWORD PTR -8[rbp], 0			# -8 = i в for
 	mov	r12d, 0			# r12d = i в for
 	jmp	.L6
 .L8:							# for (int i = 0; i < length; ++i)
@@ -85,10 +84,8 @@ task_random:						# void task_random(int length)
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L7:
-	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L6:
-	# mov	eax, DWORD PTR -8[rbp]
 	mov	eax, r12d
 	cmp	eax, DWORD PTR -20[rbp]
 	jl	.L8
@@ -109,7 +106,6 @@ task_random_lite:					# int task_random_lite(int length)
 	sub	rsp, 32
 	mov	DWORD PTR -20[rbp], edi			# -20 = length
 	mov	DWORD PTR -4[rbp], 0			# -4 = sum
-	# mov	DWORD PTR -8[rbp], 0			# -8 = j в for
 	mov	r12d, 0			# r12d = j в for
 	jmp	.L10
 .L12:
@@ -129,10 +125,8 @@ task_random_lite:					# int task_random_lite(int length)
 	sub	eax, 48
 	add	DWORD PTR -4[rbp], eax
 .L11:
-	# add	DWORD PTR -8[rbp], 1
 	add	r12d, 1
 .L10:
-	# mov	eax, DWORD PTR -8[rbp]
 	mov	eax, r12d
 	cmp	eax, DWORD PTR -20[rbp]
 	jl	.L12
@@ -168,8 +162,8 @@ main:
 	mov	rax, QWORD PTR -48[rbp]
 	add	rax, 8
 	mov	rax, QWORD PTR [rax]
-	mov	rsi, rdx				# => argv[1]
-	mov	rdi, rax				# => argv[2]
+	mov	rsi, rdx				# argv[1] => char *input
+	mov	rdi, rax				# argv[2] => char *output
 	call	task_file@PLT				# task_file(argv[1], argv[2]);
 	mov	eax, 0
 	jmp	.L20					# return 0;
@@ -186,18 +180,16 @@ main:
 	mov	DWORD PTR -8[rbp], eax			# length = atoi(argv[1]);
 	call	clock@PLT
 	mov	QWORD PTR -16[rbp], rax			# time_t t_start => (-16 = t_end)
-	# mov	DWORD PTR -4[rbp], 0			# -4 = i в for
 	mov	r13d, 0			# -4 = i в for
 	jmp	.L17
 .L18:							# for (int i = 0; i < 5000000; ++i) {
-	mov	edi, DWORD PTR -8[rbp]
+	mov	edi, DWORD PTR -8[rbp]		#  length => task_random_lite
 	call	task_random_lite
-	# add	DWORD PTR -4[rbp], 1
 	add	r13d, 1
 .L17:
 	cmp	r13d, 4999999
 	jle	.L18
-	mov	edi, DWORD PTR -8[rbp]
+	mov	edi, DWORD PTR -8[rbp]		# length => task_random
 	call	task_random
 	call	clock@PLT
 	mov	QWORD PTR -24[rbp], rax			# time_t t_end => (-24 = t_end)
@@ -230,16 +222,15 @@ main:
 	cmp	eax, 1
 	jne	.L19
 	mov	eax, 0
-	call	read_int
+	call	read_int		# int read_int()
 	mov	DWORD PTR -8[rbp], eax
-	mov	eax, DWORD PTR -8[rbp]
-	mov	edi, eax
-	call	task_random
+	mov	edi, DWORD PTR -8[rbp]		# length => task_random
+	call	task_random		# task_random()
 	mov	eax, 0
 	jmp	.L20
 .L19:
 	mov	eax, 0
-	call	task_cmd@PLT
+	call	task_cmd@PLT		# int task_cmd()
 	mov	esi, eax
 	lea	rdi, .LC7[rip]
 	mov	eax, 0

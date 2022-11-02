@@ -50,8 +50,8 @@ task_file:
 	mov	rdi, rax
 	call	fopen@PLT				# fopen(input, "r");
 	mov	QWORD PTR -16[rbp], rax			# -16 = FILE *input_stream
-	mov	rdi, rax
-	call	check_stream
+	mov	rdi, rax		# FILE *stream => check_stream()
+	call	check_stream		# check_stream()
 	mov	DWORD PTR -4[rbp], 0			# -4 = sum
 	mov	BYTE PTR -25[rbp], 32			# -25 = ch = ' '
 	jmp	.L5
@@ -82,8 +82,8 @@ task_file:
 	mov	rdi, QWORD PTR -48[rbp]
 	call	fopen@PLT				# fopen(output, "w");
 	mov	QWORD PTR -24[rbp], rax			# -24 = FILE *output_stream
-	mov	rdi, rax
-	call	check_stream
+	mov	rdi, rax		# FILE *stream => check_stream()
+	call	check_stream		# check_stream()
 	mov	edx, DWORD PTR -4[rbp]
 	mov	rax, QWORD PTR -24[rbp]
 	lea	rsi, .LC4[rip]
