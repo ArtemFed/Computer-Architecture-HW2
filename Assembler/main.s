@@ -32,15 +32,15 @@
 	.type	main, @function
 main:
 	endbr64	
-	push	rbp	#
-	mov	rbp, rsp	#,
-	sub	rsp, 320	#,
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 320
 	mov	DWORD PTR -308[rbp], edi	# argc, argc
 	mov	QWORD PTR -320[rbp], rsi	# argv, argv
 	cmp	DWORD PTR -308[rbp], 2	# if (argc == 2) {
-	jne	.L2	#,
+	jne	.L2
 # ./main.c:14:         time_t t_start = clock();
-	call	clock@PLT	#
+	call	clock@PLT
 	mov	QWORD PTR -32[rbp], rax	# t_start, tmp106
 # ./main.c:15:         printf("String: %s\n", argv[1]);
 	mov	rax, QWORD PTR -320[rbp]	# tmp107, argv
@@ -59,7 +59,7 @@ main:
 	add	rax, 8
 	mov	rax, QWORD PTR [rax]	# _4, *_3
 	mov	rdi, rax	#, _4
-	call	task@PLT	#
+	call	task@PLT
 	add	DWORD PTR -4[rbp], 1	# i,
 .L3:
 	cmp	DWORD PTR -4[rbp], 24999999

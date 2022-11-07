@@ -4,41 +4,26 @@
 ### int main(int argc, char *argv[])
 <br> -4 = i в for 
 <br> -8 = length
-<br> -16 = t_end
-<br> -24 = t_start
-<br> -28 = answer
-<br> -36 = argc
-<br> -48 = argv
-
-### int read_int()
-<br> -4 = length
-
-
-### void task_random(int length)
-<br> -4 = sum
-<br> -8 = i в for
-<br> -9 = ch 
-<br> -20 = length
-
-
-### void task_random_lite(int length)
-<br> -4 = sum
-<br> -8 = j в for
-<br> -9 = ch 
-<br> -20 = length
-
-
-## __file__:
-<br> -4 = sum
-<br> -8 = FILE *stream
 <br> -16 = FILE *input_stream
 <br> -24 = FILE *output_stream
-<br> -25 = ch
-<br> -40 = char *input
-<br> -48 = char *output
+<br> -32 = t_start
+<br> -40 = t_end
+<br> -44 = answer
+<br> -48 = length
+<br> -308 = argc
+<br> -320 = argv
 
 
-## __task__:
-<br> -4 = sum
-<br> -8 = i в for
-<br> -112 = string[100]
+## __lib__:
+### int task(const char *str);
+<br> -20 = sum
+<br> -24 = i в for 
+<br> -40 = char *str
+
+### int task_random(int length);
+<br> -4 = j в for 
+<br> -272 = rndStr
+<br> -276 = length
+
+### int task_cmd();
+<br> -256 = string
