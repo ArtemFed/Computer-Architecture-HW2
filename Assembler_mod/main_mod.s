@@ -50,7 +50,7 @@ main:
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:16:         for (int i = 0; i < 25000000; ++i) {
-	mov	DWORD PTR -4[rbp], 0	# i,
+	mov	r13d, 0	# i,
 	jmp	.L3
 .L4:
 # ./main.c:17:             task(argv[1]);
@@ -58,9 +58,9 @@ main:
 	add	rax, 8
 	mov	rsi, QWORD PTR [rax]
 	call	task@PLT
-	add	DWORD PTR -4[rbp], 1	# i,
+	add	r13d, 1	# i,
 .L3:
-	cmp	DWORD PTR -4[rbp], 24999999
+	cmp	r13d, 24999999
 	jle	.L4
 # ./main.c:19:         time_t t_end = clock();
 	call	clock@PLT
