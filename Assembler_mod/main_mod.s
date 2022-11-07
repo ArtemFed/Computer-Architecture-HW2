@@ -32,21 +32,20 @@
 	.type	main, @function
 main:
 	endbr64	
-	push	rbp	#
-	mov	rbp, rsp	#,
-	sub	rsp, 320	#,
+	push	rbp
+	mov	rbp, rsp
+	sub	rsp, 320
 	mov	DWORD PTR -308[rbp], edi	# argc, argc
 	mov	QWORD PTR -320[rbp], rsi	# argv, argv
 	cmp	DWORD PTR -308[rbp], 2	# if (argc == 2) {
-	jne	.L2	#,
+	jne	.L2
 # ./main.c:14:         time_t t_start = clock();
-	call	clock@PLT	#
+	call	clock@PLT
 	mov	QWORD PTR -32[rbp], rax	# t_start, tmp106
 # ./main.c:15:         printf("String: %s\n", argv[1]);
 	mov	rax, QWORD PTR -320[rbp]	# tmp107, argv
 	add	rax, 8	# _1,
-	mov	rax, QWORD PTR [rax]	# _2, *_1
-	mov	rsi, rax	#, _2
+	mov	rsi, QWORD PTR [rax]
 	lea	rdi, .LC0[rip]
 	mov	eax, 0
 	call	printf@PLT
@@ -57,9 +56,8 @@ main:
 # ./main.c:17:             task(argv[1]);
 	mov	rax, QWORD PTR -320[rbp]	# tmp108, argv
 	add	rax, 8
-	mov	rax, QWORD PTR [rax]	# _4, *_3
-	mov	rdi, rax	#, _4
-	call	task@PLT	#
+	mov	rsi, QWORD PTR [rax]
+	call	task@PLT
 	add	DWORD PTR -4[rbp], 1	# i,
 .L3:
 	cmp	DWORD PTR -4[rbp], 24999999
@@ -68,10 +66,8 @@ main:
 	call	clock@PLT
 	mov	QWORD PTR -40[rbp], rax	# t_end, tmp109
 # ./main.c:21:         printf("Time: %d ms", (int) (difftime(t_end, t_start)) / 1000);
-	mov	rdx, QWORD PTR -32[rbp]	# _1, t_start
-	mov	rax, QWORD PTR -40[rbp]	# _2, t_end
-	mov	rsi, rdx	#, _1
-	mov	rdi, rax	#, _2
+	mov	rsi, QWORD PTR -32[rbp]
+  mov	rdi, QWORD PTR -40[rbp]
 	call	difftime@PLT
 	cvttsd2si	eax, xmm0	# _6, _5
 	movsx	rdx, eax	# tmp112, _6
@@ -80,16 +76,14 @@ main:
 	sar	edx, 6	# tmp115,
 	sar	eax, 31	# tmp116,
 	sub	edx, eax	# tmp115, tmp116
-	mov	eax, edx	# _7, tmp115
-	mov	esi, eax	#, _7
+	mov	esi, edx
 	lea	rdi, .LC1[rip]
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:22:         printf("\nResult: %d\n", task(argv[1]));
 	mov	rax, QWORD PTR -320[rbp]	# tmp117, argv
 	add	rax, 8	# _8,
-	mov	rax, QWORD PTR [rax]	# _9, *_8
-	mov	rdi, rax	#, _9
+	mov	rdi, QWORD PTR [rax]
 	call	task@PLT
 	mov	esi, eax	#, _10
 	lea	rdi, .LC2[rip]
@@ -107,7 +101,7 @@ main:
 	add	rax, 8	# _11,
 	mov	rax, QWORD PTR [rax]	# _12, *_11
 	lea	rsi, .LC3[rip]
-	mov	rdi, rax	#, _12
+	mov	rdi, rax
 	call	fopen@PLT
 	mov	QWORD PTR -16[rbp], rax	# input_stream, tmp119
 # ./main.c:29:         if (input_stream == NULL) {
@@ -130,8 +124,7 @@ main:
 	mov	rdi, rax	#, tmp121
 	call	fgets@PLT
 # ./main.c:35:         fclose(input_stream);
-	mov	rax, QWORD PTR -16[rbp]	# tmp122, input_stream
-	mov	rdi, rax	#, tmp122
+	mov rdi, QWORD PTR -16[rbp]
 	call	fclose@PLT
 # ./main.c:37:         FILE *output_stream = fopen(argv[2], "w");
 	mov	rax, QWORD PTR -320[rbp]	# tmp123, argv
@@ -152,8 +145,7 @@ main:
 	mov	eax, 0
 	call	fprintf@PLT
 # ./main.c:39:         fclose(output_stream);
-	mov	rax, QWORD PTR -24[rbp]	# tmp127, output_stream
-	mov	rdi, rax	#, tmp127
+	mov rdi, QWORD PTR -24[rbp]
 	call	fclose@PLT
 # ./main.c:40:         return 0;
 	mov	eax, 0	# _24,
@@ -197,25 +189,23 @@ main:
 	jle	.L11
 .L10:
 # ./main.c:50:             printf("Incorrect length = %d\n", length);
-	mov	eax, DWORD PTR -48[rbp]	# length.3_19, length
-	mov	esi, eax	#, length.3_19
+	mov esi, DWORD PTR -48[rbp]
 	lea	rdi, .LC10[rip]
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:51:             return 0;
-	mov	eax, 0	# _24,
+	mov	eax, 0
 	jmp	.L13
 .L11:
 # ./main.c:53:         printf("\nResult: %d\n", task_random(length));
-	mov	eax, DWORD PTR -48[rbp]	# length.4_20, length
-	mov	edi, eax	#, length.4_20
+	mov edi, DWORD PTR -48[rbp]
 	call	task_random@PLT	#
 	mov	esi, eax	#, _21
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:54:         return 0;
-	mov	eax, 0	# _24,
+	mov	eax, 0
 	jmp	.L13
 .L9:
 # ./main.c:56:     printf("\nResult: %d\n", task_cmd());
@@ -226,26 +216,10 @@ main:
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:57:     return 0;
-	mov	eax, 0	# _24,
+	mov	eax, 0
 .L13:
 	leave	
 	ret	
 	.size	main, .-main
 	.ident	"GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.1) 9.4.0"
 	.section	.note.GNU-stack,"",@progbits
-	.section	.note.gnu.property,"a"
-	.align 8
-	.long	 1f - 0f
-	.long	 4f - 1f
-	.long	 5
-0:
-	.string	 "GNU"
-1:
-	.align 8
-	.long	 0xc0000002
-	.long	 3f - 2f
-2:
-	.long	 0x3
-3:
-	.align 8
-4:

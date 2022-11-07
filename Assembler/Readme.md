@@ -22,7 +22,7 @@
 
 ### int task_random(int length);
 <br> -4 = j в for 
-<br> -272 = rndStr
+<br> -272 = string
 <br> -276 = length
 
 ### int task_cmd();
