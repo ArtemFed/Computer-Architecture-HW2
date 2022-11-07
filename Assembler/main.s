@@ -75,11 +75,11 @@ main:
 	call	difftime@PLT
 	cvttsd2si	eax, xmm0	# _6, _5
 	movsx	rdx, eax	# tmp112, _6
-	imul	rdx, rdx, 274877907	# tmp113, tmp112,
-	shr	rdx, 32	# tmp114,
-	sar	edx, 6	# tmp115,
-	sar	eax, 31	# tmp116,
-	sub	edx, eax	# tmp115, tmp116
+	imul	rdx, rdx, 274877907
+	shr	rdx, 32
+	sar	edx, 6
+	sar	eax, 31
+	sub	edx, eax
 	mov	eax, edx	# _7, tmp115
 	mov	esi, eax	#, _7
 	lea	rdi, .LC1[rip]
@@ -125,9 +125,9 @@ main:
 .L7:
 # ./main.c:34:         fgets(arr_str, sizeof(arr_str), input_stream);
 	mov	rdx, QWORD PTR -16[rbp]	# tmp120, input_stream
-	lea	rax, -304[rbp]	# tmp121,
+	lea	rax, -304[rbp]
 	mov	esi, 256
-	mov	rdi, rax	#, tmp121
+	mov	rdi, rax
 	call	fgets@PLT
 # ./main.c:35:         fclose(input_stream);
 	mov	rax, QWORD PTR -16[rbp]	# tmp122, input_stream
@@ -142,18 +142,18 @@ main:
 	call	fopen@PLT
 	mov	QWORD PTR -24[rbp], rax	# output_stream, tmp124
 # ./main.c:38:         fprintf(output_stream, "%d ", task(arr_str));
-	lea	rax, -304[rbp]	# tmp125,
-	mov	rdi, rax	#, tmp125
+	lea	rax, -304[rbp]
+	mov	rdi, rax
 	call	task@PLT
 	mov	edx, eax	# _15,
 	mov	rax, QWORD PTR -24[rbp]	# tmp126, output_stream
 	lea	rsi, .LC6[rip]
-	mov	rdi, rax	#, tmp126
+	mov	rdi, rax
 	mov	eax, 0
 	call	fprintf@PLT
 # ./main.c:39:         fclose(output_stream);
 	mov	rax, QWORD PTR -24[rbp]	# tmp127, output_stream
-	mov	rdi, rax	#, tmp127
+	mov	rdi, rax
 	call	fclose@PLT
 # ./main.c:40:         return 0;
 	mov	eax, 0	# _24,
@@ -166,8 +166,8 @@ main:
 # ./main.c:43:     int answer = 0;
 	mov	DWORD PTR -44[rbp], 0	# answer,
 # ./main.c:44:     scanf("%d", &answer);
-	lea	rax, -44[rbp]	# tmp128,
-	mov	rsi, rax	#, tmp128
+	lea	rax, -44[rbp]
+	mov	rsi, rax
 	lea	rdi, .LC8[rip]
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
@@ -183,8 +183,8 @@ main:
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:48:         scanf("%d", &length);
-	lea	rax, -48[rbp]	# tmp129,
-	mov	rsi, rax	#, tmp129
+	lea	rax, -48[rbp]
+	mov	rsi, rax
 	lea	rdi, .LC8[rip]
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
@@ -209,7 +209,7 @@ main:
 # ./main.c:53:         printf("\nResult: %d\n", task_random(length));
 	mov	eax, DWORD PTR -48[rbp]	# length.4_20, length
 	mov	edi, eax	#, length.4_20
-	call	task_random@PLT	#
+	call	task_random@PLT
 	mov	esi, eax	#, _21
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
