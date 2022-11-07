@@ -46,7 +46,7 @@ task:
 	mov	eax, DWORD PTR -24[rbp]	# tmp103, i
 	movsx	rbx, eax	# _12, tmp103
 	mov	rax, QWORD PTR -40[rbp]	# tmp104, str
-	mov	rdi, rax	#, tmp104
+	mov	rdi, rax
 	call	strlen@PLT
 	cmp	rbx, rax	# _12, _13
 	jb	.L4
@@ -80,12 +80,12 @@ task_random:
 # ./lib.c:20:         rndStr[j] = (char) (33 + rand() % 93);
 	call	rand@PLT
 	movsx	rdx, eax	# tmp91, _3
-	imul	rdx, rdx, 738919105	# tmp92, tmp91,
+	imul	rdx, rdx, 738919105
 	shr	rdx, 32	# tmp93,
-	mov	ecx, edx	# tmp94, tmp93
+	mov	ecx, edx
 	sar	ecx, 4	# tmp94,
 	cdq
-	sub	ecx, edx	# tmp94, tmp95
+	sub	ecx, edx
 	mov	edx, ecx	# _4, tmp94
 	imul	edx, edx, 93	# tmp96, _4,
 	sub	eax, edx	# _3, tmp96
@@ -103,14 +103,14 @@ task_random:
 	cmp	eax, DWORD PTR -276[rbp]	# tmp99, length
 	jl	.L8
 # ./lib.c:22:     printf("Random string: %s", rndStr);
-	lea	rax, -272[rbp]	# tmp100,
-	mov	rsi, rax	#, tmp100
+	lea	rax, -272[rbp]
+	mov	rsi, rax
 	lea	rdi, .LC0[rip]
 	mov	eax, 0
 	call	printf@PLT
 # ./lib.c:23:     return task(rndStr);
-	lea	rax, -272[rbp]	# tmp101,
-	mov	rdi, rax	#, tmp101
+	lea	rax, -272[rbp]
+	mov	rdi, rax
 	call	task
 	leave	
 	ret	
@@ -139,13 +139,13 @@ task_cmd:
 	call	getchar@PLT
 # ./lib.c:31:     fgets(string, 256, stdin);
 	mov	rdx, QWORD PTR stdin[rip]	# stdin.1_2, stdin
-	lea	rax, -256[rbp]	# tmp86,
+	lea	rax, -256[rbp]
 	mov	esi, 256
-	mov	rdi, rax	#, tmp86
+	mov	rdi, rax
 	call	fgets@PLT
 # ./lib.c:32:     return task(string);
-	lea	rax, -256[rbp]	# tmp87,
-	mov	rdi, rax	#, tmp87
+	lea	rax, -256[rbp]
+	mov	rdi, rax
 	call	task
 	leave	
 	ret	
