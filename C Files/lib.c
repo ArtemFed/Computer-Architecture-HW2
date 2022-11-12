@@ -14,19 +14,20 @@ int task(const char *str) {
 }
 
 int task_random(int length) {
-    char string[256];
+    char rndStr[256];
     srand(clock());
     for (int j = 0; j < length; ++j) {
-        string[j] = (char) (33 + rand() % 93);
+        rndStr[j] = (char) (33 + rand() % 93);
     }
-    printf("Random string: %s", string);
-    return task(string);
+    printf("Random string: %s", rndStr);
+    return task(rndStr);
 }
 
 int task_cmd() {
     char string[256];
     printf("Your string (maximum 256 characters):");
     fflush(stdin);
+    getchar();
     fgets(string, 256, stdin);
     return task(string);
 }
