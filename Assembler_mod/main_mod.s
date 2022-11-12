@@ -56,7 +56,7 @@ main:
 # ./main.c:17:             task(argv[1]);
 	mov	rax, QWORD PTR -320[rbp]	# tmp108, argv
 	add	rax, 8
-	mov	rsi, QWORD PTR [rax]
+	mov	rdi, QWORD PTR [rax]
 	call	task@PLT
 	add	r13d, 1	# i,
 .L3:

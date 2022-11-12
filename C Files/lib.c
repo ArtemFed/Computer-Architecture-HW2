@@ -5,9 +5,12 @@
 
 int task(const char *str) {
     int sum = 0;
-    for (int i = 0; i < strlen(str); ++i) {
-        if ((str[i] >= '1') && (str[i] <= '9')) {
-            sum += ((int) str[i] - 48);
+    int length = strlen(str);
+    char ch = ' ';
+    for (int i = 0; i < length; ++i) {
+        ch = str[i];
+        if ((ch >= '1') && (ch <= '9')) {
+            sum += ((int) ch - 48);
         }
     }
     return sum;
