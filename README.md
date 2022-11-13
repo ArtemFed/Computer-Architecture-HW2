@@ -181,11 +181,21 @@ __Модифицированная программа:__
 <br/>
 
 # Отчёт 9 баллов
-> Первый тест: размер 56, 200млн итераций task(). <br/>
-> Второй тест: размер 43, 200млн итераций task(). <br/>
+> Первый тест: размер 30, 200млн итераций task(). <br/>
+> Второй тест: размер 42, 200млн итераций task(). <br/>
 
-| Тип программы  | Время работы первого теста  | Время работы второго теста   | Размер исполняемого файла | Суммарное количество строк | 
+| Программа  | Время работы первого теста  | Время работы второго теста   | Размер исполняемого файла | Суммарное количество строк | 
 | :---: | :---: | :---: | :---: | :---: | 
-| [Программа на C](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/C%20Files)  | 2726 ms  | 1694 ms| 17.0 KiB  | 96 строк  | 
-| [Программа на ассемблере без модификаций](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Assembler)  | 2631 ms  | 1793 ms  | 17,0 KiB  | 433 строк  | 
-| [Программа на ассемблере с модификациями](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Assembler_mod)  | 1357 ms  | 995 ms  | 16,8 KiB  | 376 строк  | 
+| [C](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Optimized_Files/C)  | 14723 ms  | 17418 ms| 17.416 KiB  | 96 строк  | 
+| [Ассемблер](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Optimized_Files/Assembly)  | 14489 ms  | 14448 ms  | 17.36 KiB  | 433 строк  | 
+| [Мод Ассемблер](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Optimized_Files/Assembly_mod)  | 9502 ms  | 8106 ms  | 17.16 KiB  | 376 строк  | 
+| [Флаг -O0](https://github.com/ArtemFed/Computer-Architecture-HW2/tree/main/Optimized_Files/Compiled%20with%20-O0)  | 14538 ms  | 14748 ms  | 17.208 KiB  | 350 строк  | 
+| [Флаг -O1](https://github.com/ArtemFed/Computer-Architecture-HW2/tree/main/Optimized_Files/Compiled%20with%20-O1)  | 11087 ms  | 11107 ms  | 17.192 KiB  | 321 строк  | 
+| [Флаг -O2](https://github.com/ArtemFed/Computer-Architecture-HW2/tree/main/Optimized_Files/Compiled%20with%20-O2)  | 4901 ms  | 6157 ms  | 17.24 KiB  | 322 строк  | 
+| [Флаг -O3](https://github.com/ArtemFed/Computer-Architecture-HW2/tree/main/Optimized_Files/Compiled%20with%20-O3)  | 2615 ms  | 2840 ms  | 21.336 KiB  | 1211 строк  | 
+| [Флаг -Ofast](https://github.com/ArtemFed/Computer-Architecture-HW2/tree/main/Optimized_Files/Compiled%20with%20-Ofast)  | 2598 ms  | 2855 ms  | 21.336 KiB  | 1211 строк  | 
+| [Флаг -Os](https://github.com/ArtemFed/Computer-Architecture-HW2/tree/main/Optimized_Files/Compiled%20with%20-Os)  | 10691 ms  | 13065 ms  | 17.2 KiB  | 300 строк  | 
+
+### Вывод по сравнению:
+* Размер файлов практически не отличается, так как код рантайма одинаковый, он присутствует в каждом варианте запуска и занимает большую часть памяти
+* 
