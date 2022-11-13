@@ -53,11 +53,11 @@
  > Си-код <br>
  > Ассемблер-код <br>
  > Модифицированный Ассемблер: <br/>
- > <img width="600" alt="Тест9" src="https://user-images.githubusercontent.com/57373162/201498550-f0ecc8e1-7d58-43a2-a522-d7902a394a5a.png">
+ > <img width="1000" alt="Тест9" src="https://user-images.githubusercontent.com/57373162/201498550-f0ecc8e1-7d58-43a2-a522-d7902a394a5a.png">
 
-2. Тест работы модифицированной программы с выполнением функции task() 25млн раз на строке А="Every_1_solution_2_breeds_3_new_problems_5":
+3. Тест работы модифицированной программы с выполнением функции task() 25млн раз на строке А="Every_1_solution_2_breeds_3_new_problems_5":
  > Си-код <br>
  > Ассемблер-код <br>
  > Модифицированный Ассемблер: <br/>
- > <img width="600" alt="Тест10" src="https://user-images.githubusercontent.com/57373162/201498560-7bc7c3eb-233f-4794-abc6-9e31ac2dbc8d.png">
+ > <img width="1000" alt="Тест10" src="https://user-images.githubusercontent.com/57373162/201498560-7bc7c3eb-233f-4794-abc6-9e31ac2dbc8d.png">
 
