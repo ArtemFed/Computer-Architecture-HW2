@@ -106,7 +106,7 @@ __Модифицированная программа:__
 > 4)  rdx - третий аргумент в функции
 > 5)  rcx - счётчик
 
-> * [Список переменных в модифицированной программе](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Assembler_mod/variables_mod.md)
+> * [Список переменных в модифицированной программе](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Assembler_mod/Readme.md)
 > * [main_mod.s](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Assembler_mod/main_mod.s)
 > * [lib_mod.s](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Assembler_mod/lib_mod.s)
 
@@ -183,7 +183,7 @@ __Модифицированная программа:__
 # Отчёт 9 баллов
 1) Первый тест: размер 30, 200млн итераций task(). <br/>
 2) Второй тест: размер 42, 200млн итераций task(). <br/>
-* [Ссылка на скриншоты](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Tests.md) <br/>
+>   [Ссылка на скриншоты](https://github.com/ArtemFed/Computer-Architecture-HW2/blob/main/Tests.md) <br/>
 
 | Программа  | Время работы первого теста  | Время работы второго теста   | Размер исполняемого файла | Суммарное количество строк | 
 | :---: | :---: | :---: | :---: | :---: | 
