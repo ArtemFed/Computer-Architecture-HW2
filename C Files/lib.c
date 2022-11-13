@@ -17,13 +17,13 @@ int task(const char *str) {
 }
 
 int task_random(int length) {
-    char rndStr[256];
+    char string[256];
     srand(clock());
     for (int j = 0; j < length; ++j) {
-        rndStr[j] = (char) (33 + rand() % 93);
+        string[j] = (char) (33 + rand() % 93);
     }
-    printf("Random string: %s", rndStr);
-    return task(rndStr);
+    printf("Random string: %s", string);
+    return task(string);
 }
 
 int task_cmd() {

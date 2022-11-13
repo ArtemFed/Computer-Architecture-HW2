@@ -28,9 +28,9 @@ task:
 	mov	BYTE PTR -13[rbp], al
 # ./lib.c:12:         if ((ch >= '1') && (ch <= '9')) {
 	cmp	BYTE PTR -13[rbp], 48	# cmp ch, 48
-	jle	.L3	#,
+	jle	.L3
 	cmp	BYTE PTR -13[rbp], 57	# cmp ch, 57
-	jg	.L3	#,
+	jg	.L3
 # ./lib.c:13:             sum += ((int) ch - 48);
 	movsx	eax, BYTE PTR -13[rbp]
 	sub	eax, 48
@@ -87,19 +87,19 @@ task_random:
 # ./lib.c:22:     for (int j = 0; j < length; ++j) {
 	add	r12d, 1	# j++
 .L7:
-	mov	eax, r12d	# tmp99, j
-	cmp	eax, DWORD PTR -276[rbp]	# tmp99, length
+	mov	eax, r12d
+	cmp	eax, DWORD PTR -276[rbp]
 	jl	.L8
-# ./lib.c:25:     printf("Random string: %s", rndStr);
+# ./lib.c:25:     printf("Random string: %s", string);
 	lea	rax, -272[rbp]
 	mov	rsi, rax
 	lea	rdi, .LC0[rip]
 	mov	eax, 0
 	call	printf@PLT
-# ./lib.c:26:     return task(rndStr);
+# ./lib.c:26:     return task(string);
 	lea	rax, -272[rbp]
 	mov	rdi, rax
-	call	task
+	call	task	# string => task(string)
 # ./lib.c:27: }
 	leave	
 	ret	
@@ -132,8 +132,8 @@ task_cmd:
 	call	fgets@PLT
 # ./lib.c:35:     return task(string);
 	lea	rax, -256[rbp]
-	mov	rdi, rax
-	call	task
+	mov	rdi, rax	# string => task(string)
+	call	task	
 # ./lib.c:36: }
 	leave	
 	ret	

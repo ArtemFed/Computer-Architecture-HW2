@@ -82,9 +82,9 @@ main:
 # ./main.c:22:         printf("\nResult: %d\n", task(argv[1]));
 	mov	rax, QWORD PTR -320[rbp]	# tmp117, argv
 	add	rax, 8
-	mov	rdi, QWORD PTR [rax]
+	mov	rdi, QWORD PTR [rax]	# argv[1] => task(argv[1]);
 	call	task@PLT
-	mov	esi, eax
+	mov	esi, eax	# int sum => printf
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
@@ -135,9 +135,9 @@ main:
 	mov	QWORD PTR -24[rbp], rax	# output_stream, tmp124
 # ./main.c:38:         fprintf(output_stream, "%d ", task(arr_str));
 	lea	rax, -304[rbp]
-	mov	rdi, rax
+	mov	rdi, rax	# argv[1] => task(argv[1])
 	call	task@PLT
-	mov	edx, eax
+	mov	edx, eax	# int sum => fprintf
 	mov	rax, QWORD PTR -24[rbp]	# tmp126, output_stream
 	lea	rsi, .LC6[rip]
 	mov	rdi, rax
@@ -197,9 +197,9 @@ main:
 	jmp	.L13
 .L11:
 # ./main.c:53:         printf("\nResult: %d\n", task_random(length));
-	mov edi, DWORD PTR -48[rbp]
-	call	task_random@PLT
-	mov	esi, eax
+	mov edi, DWORD PTR -48[rbp]	# length => task_random(length)
+	call	task_random@PLT		
+	mov	esi, eax	# length => printf
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
@@ -209,8 +209,8 @@ main:
 .L9:
 # ./main.c:56:     printf("\nResult: %d\n", task_cmd());
 	mov	eax, 0
-	call	task_cmd@PLT
-	mov	esi, eax
+	call	task_cmd@PLT	# task_cmd()
+	mov	esi, eax	# int sum => printf
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
