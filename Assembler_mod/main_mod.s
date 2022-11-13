@@ -31,7 +31,6 @@
 	.globl	main
 	.type	main, @function
 main:
-	endbr64	
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 320
