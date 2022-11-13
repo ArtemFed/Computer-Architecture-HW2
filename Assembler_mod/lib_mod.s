@@ -4,7 +4,6 @@
 	.globl	task
 	.type	task, @function
 task:
-	endbr64	
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 32
@@ -56,7 +55,6 @@ task:
 	.globl	task_random
 	.type	task_random, @function
 task_random:
-	endbr64	
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 288
@@ -114,7 +112,6 @@ task_random:
 	.globl	task_cmd
 	.type	task_cmd, @function
 task_cmd:
-	endbr64	
 	push	rbp
 	mov	rbp, rsp
 	sub	rsp, 256
