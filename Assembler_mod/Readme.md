@@ -82,7 +82,7 @@
 * 		DWORD PTR -4[rbp] => r12d
 
 ##    Просто удалено
-* 		cdq и cdqe
+* 		cdq, cdqe и endbr64
 *     .section	.note.gnu.property,"a"
       .align 8
       .long	 1f - 0f

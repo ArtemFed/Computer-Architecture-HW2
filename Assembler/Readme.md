@@ -5,7 +5,7 @@
 * -4 = i в for 
 * -8 = length
 * -16 = FILE *input_stream
-* 24 = FILE *output_stream
+* -24 = FILE *output_stream
 * -32 = t_start
 * -40 = t_end
 * -44 = answer
@@ -16,9 +16,11 @@
 
 ## __lib__:
 ### int task(const char *str);
-* -20 = sum
-* -24 = i в for 
-* -40 = char *str
+* -4 = sum
+* -8 = i в for 
+* -12 = length
+* -13 = ch
+* -24 = char *str
 
 ### int task_random(int length);
 * -4 = j в for 

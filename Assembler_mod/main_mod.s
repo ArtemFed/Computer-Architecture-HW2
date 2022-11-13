@@ -58,7 +58,7 @@ main:
 	add	rax, 8
 	mov	rdi, QWORD PTR [rax]
 	call	task@PLT
-	add	r13d, 1	# i,
+	add	r13d, 1	# i++
 .L3:
 	cmp	r13d, 24999999
 	jle	.L4
@@ -69,37 +69,37 @@ main:
 	mov	rsi, QWORD PTR -32[rbp]
   mov	rdi, QWORD PTR -40[rbp]
 	call	difftime@PLT
-	cvttsd2si	eax, xmm0	# _6, _5
-	movsx	rdx, eax	# tmp112, _6
-	imul	rdx, rdx, 274877907	# tmp113, tmp112,
-	shr	rdx, 32	# tmp114,
-	sar	edx, 6	# tmp115,
-	sar	eax, 31	# tmp116,
-	sub	edx, eax	# tmp115, tmp116
+	cvttsd2si	eax, xmm0
+	movsx	rdx, eax
+	imul	rdx, rdx, 274877907
+	shr	rdx, 32
+	sar	edx, 6
+	sar	eax, 31
+	sub	edx, eax
 	mov	esi, edx
 	lea	rdi, .LC1[rip]
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:22:         printf("\nResult: %d\n", task(argv[1]));
 	mov	rax, QWORD PTR -320[rbp]	# tmp117, argv
-	add	rax, 8	# _8,
+	add	rax, 8
 	mov	rdi, QWORD PTR [rax]
 	call	task@PLT
-	mov	esi, eax	#, _10
+	mov	esi, eax
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:23:         return 0;
-	mov	eax, 0	# _24,
+	mov	eax, 0
 	jmp	.L13
 .L2:
 # ./main.c:26:     if (argc == 3) {
-	cmp	DWORD PTR -308[rbp], 3	# argc,
-	jne	.L6	#,
+	cmp	DWORD PTR -308[rbp], 3	# argc, 3
+	jne	.L6
 # ./main.c:28:         FILE *input_stream = fopen(argv[1], "r");
 	mov	rax, QWORD PTR -320[rbp]	# tmp118, argv
-	add	rax, 8	# _11,
-	mov	rax, QWORD PTR [rax]	# _12, *_11
+	add	rax, 8
+	mov	rax, QWORD PTR [rax]
 	lea	rsi, .LC3[rip]
 	mov	rdi, rax
 	call	fopen@PLT
@@ -114,41 +114,41 @@ main:
 # ./main.c:31:             getchar();
 	call	getchar@PLT
 # ./main.c:32:             return 0;
-	mov	eax, 0	# _24,
+	mov	eax, 0
 	jmp	.L13
 .L7:
 # ./main.c:34:         fgets(arr_str, sizeof(arr_str), input_stream);
 	mov	rdx, QWORD PTR -16[rbp]	# tmp120, input_stream
-	lea	rax, -304[rbp]	# tmp121,
+	lea	rax, -304[rbp]
 	mov	esi, 256
-	mov	rdi, rax	#, tmp121
+	mov	rdi, rax
 	call	fgets@PLT
 # ./main.c:35:         fclose(input_stream);
 	mov rdi, QWORD PTR -16[rbp]
 	call	fclose@PLT
 # ./main.c:37:         FILE *output_stream = fopen(argv[2], "w");
 	mov	rax, QWORD PTR -320[rbp]	# tmp123, argv
-	add	rax, 16	# _13,
-	mov	rax, QWORD PTR [rax]	# _14, *_13
+	add	rax, 16
+	mov	rax, QWORD PTR [rax]
 	lea	rsi, .LC5[rip]
-	mov	rdi, rax	#, _14
+	mov	rdi, rax
 	call	fopen@PLT
 	mov	QWORD PTR -24[rbp], rax	# output_stream, tmp124
 # ./main.c:38:         fprintf(output_stream, "%d ", task(arr_str));
-	lea	rax, -304[rbp]	# tmp125,
-	mov	rdi, rax	#, tmp125
+	lea	rax, -304[rbp]
+	mov	rdi, rax
 	call	task@PLT
-	mov	edx, eax	# _15,
+	mov	edx, eax
 	mov	rax, QWORD PTR -24[rbp]	# tmp126, output_stream
 	lea	rsi, .LC6[rip]
-	mov	rdi, rax	#, tmp126
+	mov	rdi, rax
 	mov	eax, 0
 	call	fprintf@PLT
 # ./main.c:39:         fclose(output_stream);
 	mov rdi, QWORD PTR -24[rbp]
 	call	fclose@PLT
 # ./main.c:40:         return 0;
-	mov	eax, 0	# _24,
+	mov	eax, 0
 	jmp	.L13
 .L6:
 # ./main.c:42:     printf("Random input or Direct (ans: 1, !=1):");
@@ -158,8 +158,8 @@ main:
 # ./main.c:43:     int answer = 0;
 	mov	DWORD PTR -44[rbp], 0	# answer,
 # ./main.c:44:     scanf("%d", &answer);
-	lea	rax, -44[rbp]	# tmp128,
-	mov	rsi, rax	#, tmp128
+	lea	rax, -44[rbp]
+	mov	rsi, rax
 	lea	rdi, .LC8[rip]
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
@@ -175,8 +175,8 @@ main:
 	mov	eax, 0
 	call	printf@PLT
 # ./main.c:48:         scanf("%d", &length);
-	lea	rax, -48[rbp]	# tmp129,
-	mov	rsi, rax	#, tmp129
+	lea	rax, -48[rbp]
+	mov	rsi, rax
 	lea	rdi, .LC8[rip]
 	mov	eax, 0
 	call	__isoc99_scanf@PLT
@@ -199,8 +199,8 @@ main:
 .L11:
 # ./main.c:53:         printf("\nResult: %d\n", task_random(length));
 	mov edi, DWORD PTR -48[rbp]
-	call	task_random@PLT	#
-	mov	esi, eax	#, _21
+	call	task_random@PLT
+	mov	esi, eax
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
@@ -211,7 +211,7 @@ main:
 # ./main.c:56:     printf("\nResult: %d\n", task_cmd());
 	mov	eax, 0
 	call	task_cmd@PLT
-	mov	esi, eax	#, _22
+	mov	esi, eax
 	lea	rdi, .LC2[rip]
 	mov	eax, 0
 	call	printf@PLT
