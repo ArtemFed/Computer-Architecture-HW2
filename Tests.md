@@ -13,7 +13,7 @@
  > Модифицированный Ассемблер: <br/>
  > <img width="241" alt="Тест2" src="https://user-images.githubusercontent.com/57373162/199455462-fa099ecd-60aa-4f8a-b2fc-2d4673f74751.png">
 
-3. Тест 3 - string: "ʕ ᵔᴥᵔ ʔ ʕ ᵔᴥᵔ ʔ ʕ ᵔᴥᵔ ʔ" <br/>
+3. Тест 3 <br/>
  > Си-код <br>
  > Ассемблер-код <br>
  > Модифицированный Ассемблер: <br/>
@@ -60,4 +60,9 @@
  > Ассемблер-код <br>
  > Модифицированный Ассемблер: <br/>
  > <img width="1000" alt="Тест10" src="https://user-images.githubusercontent.com/57373162/201498560-7bc7c3eb-233f-4794-abc6-9e31ac2dbc8d.png">
+
+# 9 баллов
+1. Тест 1 <br> <img width="1000" alt="Тест1 на 9" src="https://user-images.githubusercontent.com/57373162/201540110-69a11482-2df1-49fe-96db-dc0326beb2e3.png">
+
+2. Тест 2 <br> <img width="1000" alt="Тест2 на 9" src="https://user-images.githubusercontent.com/57373162/201540121-1381b788-32b7-469c-99b0-fd1b4fb85697.png">
 
