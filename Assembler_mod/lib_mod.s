@@ -64,7 +64,7 @@ task_random:
 	mov	edi, eax
 	call	srand@PLT
 # ./lib.c:22:     for (int j = 0; j < length; ++j) {
-	mov	DWORD PTR -4[rbp], 0	# j,
+	mov	r12d, 0	# j,
 	jmp	.L7
 .L8:
 # ./lib.c:23:         rndStr[j] = (char) (33 + rand() % 93);
@@ -81,13 +81,13 @@ task_random:
 	sub	eax, edx
 	mov	edx, eax
 	add	edx, 33
-	mov	eax, DWORD PTR -4[rbp]	# tmp98, j
+	mov	eax, r12d	# tmp98, j
 	cdqe
 	mov	BYTE PTR -272[rbp+rax], dl	# rndStr, _7
 # ./lib.c:22:     for (int j = 0; j < length; ++j) {
-	add	DWORD PTR -4[rbp], 1	# j++
+	add	r12d, 1	# j++
 .L7:
-	mov	eax, DWORD PTR -4[rbp]	# tmp99, j
+	mov	eax, r12d	# tmp99, j
 	cmp	eax, DWORD PTR -276[rbp]	# tmp99, length
 	jl	.L8
 # ./lib.c:25:     printf("Random string: %s", rndStr);
