@@ -1,4 +1,4 @@
-# Computer-Architecture-HW2. <br/> Выполнил Федоров Артём БПИ217.
+# Computer-Architecture-HW2. <br/> Выполнил Федоров Артём БПИ217. <br/> Вариант 21
 
 ## Processing of character strings <br/>
 
